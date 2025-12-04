@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:expenz/screens/on_boarding_screen.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -13,14 +15,7 @@ class MyApp extends StatelessWidget {
       title: "Expense",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: "Inter"),
-      home: Scaffold(
-        body: Center(
-          child: Text(
-            "Hello, Expense App!",
-            style: TextStyle(fontSize: 50, color: Colors.amber),
-          ),
-        ),
-      ),
+      home: BoardingScreen(),
     );
   }
 }
