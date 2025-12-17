@@ -1,4 +1,4 @@
-import 'package:expenz/screens/home_screen.dart';
+import 'package:expenz/screens/main_screen.dart';
 import 'package:expenz/screens/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +13,6 @@ class Wrapper extends StatefulWidget {
 class _WrapperState extends State<Wrapper> {
   @override
   Widget build(BuildContext context) {
-    return widget.showMainScreen ? HomeScreen() : BoardingScreen();
+    return widget.showMainScreen ? MainScreen() : BoardingScreen();
   }
 }

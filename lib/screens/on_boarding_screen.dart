@@ -5,7 +5,7 @@ import 'package:expenz/screens/user_data_screen.dart';
 import 'package:expenz/widget/custom_button.dart';
 import 'package:flutter/material.dart';
 
-import 'package:expenz/screens/on_bording_screen/main_screen.dart';
+import 'package:expenz/screens/on_bording_screen/front_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class BoardingScreen extends StatefulWidget {
@@ -32,7 +32,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
                 });
               },
               children: [
-                MainScreen(),
+                FrontPage(),
                 SharedScreens(
                   imagePath: OnboardingData.onBoardingPages[0].imagePath,
                   title: OnboardingData.onBoardingPages[0].title,

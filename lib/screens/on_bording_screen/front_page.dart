@@ -1,8 +1,8 @@
 import 'package:expenz/constant/colors.dart';
 import 'package:flutter/material.dart';
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+class FrontPage extends StatelessWidget {
+  const FrontPage({super.key});
 
   @override
   Widget build(BuildContext context) {

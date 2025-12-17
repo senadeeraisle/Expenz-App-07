@@ -1,6 +1,6 @@
 import 'package:expenz/constant/colors.dart';
 import 'package:expenz/constant/constants.dart';
-import 'package:expenz/screens/home_screen.dart';
+import 'package:expenz/screens/main_screen.dart';
 import 'package:expenz/services/user_details_service.dart';
 import 'package:expenz/widget/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -157,7 +157,7 @@ class _UserDataScreenState extends State<UserDataScreen> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return HomeScreen();
+                                    return MainScreen();
                                   },
                                 ),
                               );
