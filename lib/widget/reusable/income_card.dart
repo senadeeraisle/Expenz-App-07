@@ -22,7 +22,7 @@ class _IncomeCardState extends State<IncomeCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.35,
+      width: MediaQuery.of(context).size.width * 0.4,
       height: MediaQuery.of(context).size.height * 0.08,
       decoration: BoxDecoration(
         color: widget.bgColor,
