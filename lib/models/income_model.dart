@@ -10,7 +10,7 @@ final Map<IncomeCategory, String> incomeCategoryImages = {
 };
 
 final Map<IncomeCategory, Color> incomeCategoryColors = {
-  IncomeCategory.salary: const Color(0xFFFFD54F),
+  IncomeCategory.salary: const Color.fromARGB(255, 188, 170, 112),
   IncomeCategory.freelance: const Color(0xFFE57373),
   IncomeCategory.passiveIncome: const Color(0xFF81C784),
   IncomeCategory.sales: const Color(0xFF64B5F6),
@@ -34,4 +34,29 @@ class IncomeModel {
     required this.time,
     required this.description,
   });
+
+  // convert expense object into a JSON object
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'amount': amount,
+      'category': category.index,
+      'date': date.toIso8601String(),
+      'time': time.toIso8601String(),
+      'description': description,
+    };
+  }
+
+  factory IncomeModel.fromJson(Map<String, dynamic> json) {
+    return IncomeModel(
+      id: json['id'],
+      title: json['title'],
+      amount: json['amount'],
+      date: DateTime.parse(json['date']),
+      time: DateTime.parse(json['time']),
+      category: IncomeCategory.values[json['category']],
+      description: json['description'],
+    );
+  }
 }
