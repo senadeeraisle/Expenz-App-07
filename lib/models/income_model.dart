@@ -16,7 +16,7 @@ final Map<IncomeCategory, Color> incomeCategoryColors = {
   IncomeCategory.sales: const Color(0xFF64B5F6),
 };
 
-class IncomeModel {
+class Income {
   final int id;
   final String title;
   final double amount;
@@ -25,7 +25,7 @@ class IncomeModel {
   final DateTime time;
   final String description;
 
-  IncomeModel({
+  Income({
     required this.id,
     required this.title,
     required this.amount,
@@ -48,8 +48,8 @@ class IncomeModel {
     };
   }
 
-  factory IncomeModel.fromJson(Map<String, dynamic> json) {
-    return IncomeModel(
+  factory Income.fromJson(Map<String, dynamic> json) {
+    return Income(
       id: json['id'],
       title: json['title'],
       amount: json['amount'],

@@ -1,9 +1,11 @@
 import 'package:expenz/constant/colors.dart';
+import 'package:expenz/models/expense_model.dart';
 import 'package:expenz/screens/add_new_screen.dart';
 import 'package:expenz/screens/budget_screen.dart';
 import 'package:expenz/screens/home_screen.dart';
 import 'package:expenz/screens/profile_screen.dart';
 import 'package:expenz/screens/transaction_screen.dart';
+import 'package:expenz/services/expense_service.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -16,15 +18,42 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _pages = [
-    AddNewScreen(),
-    HomeScreen(),
-    TransactionScreen(),
-    BudgetScreen(),
-    ProfileScreen(),
-  ];
+  List<Expense> expenseList = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      fetchExpenses;
+    });
+  }
+
+  //fetch expenses list
+  void fetchExpenses() async {
+    List<Expense> loadExpense = await ExpenseService().loadedExpenses();
+
+    setState(() {
+      expenseList = loadExpense;
+    });
+  }
+
+  void addNewExpense(Expense newExpense) {
+    ExpenseService().saveExpense(newExpense, context);
+    setState(() {
+      expenseList.add(newExpense);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final List<Widget> pages = [
+      AddNewScreen(addExpense: addNewExpense),
+      HomeScreen(),
+      TransactionScreen(),
+      BudgetScreen(),
+      ProfileScreen(),
+    ];
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -70,7 +99,7 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
       ),
-      body: _pages[_currentIndex],
+      body: pages[_currentIndex],
     );
   }
 }

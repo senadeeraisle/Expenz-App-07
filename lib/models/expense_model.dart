@@ -18,7 +18,7 @@ final Map<ExpenseCategory, Color> expenseCategoryColor = {
   ExpenseCategory.transport: const Color(0xFF81C784),
 };
 
-class ExpenseModel {
+class Expense {
   final int id;
   final String title;
   final double amount;
@@ -27,7 +27,7 @@ class ExpenseModel {
   final ExpenseCategory category;
   final String description;
 
-  ExpenseModel({
+  Expense({
     required this.id,
     required this.title,
     required this.amount,
@@ -49,8 +49,8 @@ class ExpenseModel {
     };
   }
 
-  factory ExpenseModel.fromJson(Map<String, dynamic> json) {
-    return ExpenseModel(
+  factory Expense.fromJson(Map<String, dynamic> json) {
+    return Expense(
       id: json['id'],
       title: json['title'],
       amount: json['amount'],
