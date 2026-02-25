@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:expenz/services/user_details_service.dart';
 import 'package:expenz/widget/wrapper.dart';
-import 'package:flutter/material.dart';
-
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
