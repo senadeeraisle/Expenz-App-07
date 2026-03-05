@@ -1,12 +1,12 @@
 import 'package:expenz/constant/colors.dart';
 import 'package:flutter/material.dart';
 
-class IncomeCard extends StatefulWidget {
+class TotalCard extends StatefulWidget {
   final Color bgColor;
   final String title;
   final double amount;
   final String imagePath;
-  const IncomeCard({
+  const TotalCard({
     super.key,
     required this.bgColor,
     required this.title,
@@ -15,10 +15,10 @@ class IncomeCard extends StatefulWidget {
   });
 
   @override
-  State<IncomeCard> createState() => _IncomeCardState();
+  State<TotalCard> createState() => _TotalCardState();
 }
 
-class _IncomeCardState extends State<IncomeCard> {
+class _TotalCardState extends State<TotalCard> {
   @override
   Widget build(BuildContext context) {
     return Container(

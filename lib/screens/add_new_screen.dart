@@ -419,7 +419,7 @@ class _AddNewScreenState extends State<AddNewScreen> {
                               _amountController.clear();
                             } else {
                               List<Expense> loadedExpense =
-                                  await ExpenseService().loadedExpenses();
+                                  await ExpenseService().loadExpenses();
                               Expense expense = Expense(
                                 id: loadedExpense.length + 1,
                                 title: _titleController.text,

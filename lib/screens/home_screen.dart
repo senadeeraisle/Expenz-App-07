@@ -1,7 +1,6 @@
 import 'package:expenz/constant/colors.dart';
-import 'package:expenz/constant/constants.dart';
 import 'package:expenz/services/user_details_service.dart';
-import 'package:expenz/widget/reusable/income_card.dart';
+import 'package:expenz/widget/reusable/total_card.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -91,13 +90,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          IncomeCard(
+                          TotalCard(
                             bgColor: kGreen,
                             title: 'Income',
                             amount: 8000,
                             imagePath: 'assets/images/income.png',
                           ),
-                          IncomeCard(
+                          TotalCard(
                             bgColor: kRed,
                             title: 'Expense',
                             amount: 8000,
