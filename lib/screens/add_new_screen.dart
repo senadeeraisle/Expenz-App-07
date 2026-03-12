@@ -45,7 +45,7 @@ class _AddNewScreenState extends State<AddNewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: _selectedMethod == 0 ? kRed : kGreen,
+      backgroundColor: _selectedMethod == 0 ? kGreen : kRed,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Stack(
@@ -69,7 +69,7 @@ class _AddNewScreenState extends State<AddNewScreen> {
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            color: _selectedMethod == 0 ? kRed : kWhite,
+                            color: _selectedMethod == 0 ? kGreen : kWhite,
                             borderRadius: BorderRadius.circular(100),
                           ),
                           child: Padding(
@@ -96,7 +96,7 @@ class _AddNewScreenState extends State<AddNewScreen> {
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            color: _selectedMethod == 1 ? kGreen : kWhite,
+                            color: _selectedMethod == 1 ? kRed : kWhite,
                             borderRadius: BorderRadius.circular(100),
                           ),
                           child: Padding(
@@ -441,8 +441,8 @@ class _AddNewScreenState extends State<AddNewScreen> {
                           child: CustomButton(
                             text: "Add",
                             backgroundColor: _selectedMethod == 0
-                                ? kRed
-                                : kGreen,
+                                ? kGreen
+                                : kRed,
                           ),
                         ),
                       ],

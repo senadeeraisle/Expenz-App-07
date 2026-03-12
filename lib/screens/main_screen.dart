@@ -66,7 +66,12 @@ class _MainScreenState extends State<MainScreen> {
       expenseList.remove(expense);
     });
   }
+  //Function to delete an income
 
+  void deleteIncome(Income income) {
+    IncomeSerive().deleteIncome(income.id, context);
+    incomeList.remove(income);
+  }
   //Function to add new income
 
   void addNewIncome(Income newIncome) {
@@ -80,6 +85,8 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final List<Widget> pages = [
       TransactionScreen(
+        onDismissedIncome: deleteIncome,
+        incomeList: incomeList,
         expenseList: expenseList,
         onDismissedExpenses: deleteExpense,
       ),

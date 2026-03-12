@@ -33,6 +33,7 @@ class ExpenseService {
           .toList();
 
       await pref.setStringList(expenseKey, updatedExpenseList);
+
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -81,7 +82,7 @@ class ExpenseService {
             .map((e) => Expense.fromJson(json.decode(e)))
             .toList();
       }
-      exsistingExpenseObject.removeWhere((expense) => expense == id);
+      exsistingExpenseObject.removeWhere((expense) => expense.id == id);
 
       List<String> updatedExpenseList = exsistingExpenseObject
           .map((e) => json.encode(e.toJson()))
