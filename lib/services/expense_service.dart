@@ -10,13 +10,13 @@ class ExpenseService {
 
   //Define a key for storing expenses in shared preferences
 
-  static const String expenseKey = 'expense';
+  static const String _newExpenseKey = "newexpensekey";
 
   // Save the expenses in shared preferences
   Future<void> saveExpense(Expense expense, BuildContext context) async {
     try {
       SharedPreferences pref = await SharedPreferences.getInstance();
-      List<String>? existingExpense = pref.getStringList(expenseKey);
+      List<String>? existingExpense = pref.getStringList(_newExpenseKey);
 
       //converting existing expense into expense objects
       List<Expense> existingExpenseObjects = [];
@@ -32,7 +32,7 @@ class ExpenseService {
           .map((e) => json.encode(e.toJson()))
           .toList();
 
-      await pref.setStringList(expenseKey, updatedExpenseList);
+      await pref.setStringList(_newExpenseKey, updatedExpenseList);
 
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -58,7 +58,7 @@ class ExpenseService {
 
   Future<List<Expense>> loadExpenses() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    List<String>? existingExpense = pref.getStringList(expenseKey);
+    List<String>? existingExpense = pref.getStringList(_newExpenseKey);
 
     List<Expense> loadedExpenses = [];
     if (existingExpense != null) {
@@ -75,7 +75,7 @@ class ExpenseService {
   Future<void> deleteExpense(id, BuildContext context) async {
     try {
       SharedPreferences pref = await SharedPreferences.getInstance();
-      List<String>? existingExpense = pref.getStringList(expenseKey);
+      List<String>? existingExpense = pref.getStringList(_newExpenseKey);
       List<Expense> exsistingExpenseObject = [];
       if (existingExpense != null) {
         exsistingExpenseObject = existingExpense
@@ -88,7 +88,7 @@ class ExpenseService {
           .map((e) => json.encode(e.toJson()))
           .toList();
 
-      await pref.setStringList(expenseKey, updatedExpenseList);
+      await pref.setStringList(_newExpenseKey, updatedExpenseList);
 
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(

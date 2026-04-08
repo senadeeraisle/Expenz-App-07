@@ -6,13 +6,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class IncomeSerive {
   //Define a key for storing income in shared preferences
-  static const String _incomeKey = "income";
+  static const String _newIncomeKey = "newincomekey";
 
   // Save the income in shared preferences
   Future<void> saveIncome(Income income, BuildContext context) async {
     try {
       SharedPreferences pref = await SharedPreferences.getInstance();
-      List<String>? existingIncome = pref.getStringList(_incomeKey);
+      List<String>? existingIncome = pref.getStringList(_newIncomeKey);
 
       //converting existing income into income objects
       List<Income> existingIncomeObjects = [];
@@ -28,7 +28,7 @@ class IncomeSerive {
           .map((e) => json.encode(e.toJson()))
           .toList();
 
-      pref.setStringList(_incomeKey, updatedIncomeList);
+      await pref.setStringList(_newIncomeKey, updatedIncomeList);
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -53,7 +53,7 @@ class IncomeSerive {
 
   Future<List<Income>> loadIncome() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    List<String>? existingIncome = pref.getStringList(_incomeKey);
+    List<String>? existingIncome = pref.getStringList(_newIncomeKey);
 
     List<Income> loadedIncome = [];
 
@@ -70,7 +70,7 @@ class IncomeSerive {
   Future<void> deleteIncome(id, BuildContext context) async {
     try {
       SharedPreferences pref = await SharedPreferences.getInstance();
-      List<String>? existingIncome = pref.getStringList(_incomeKey);
+      List<String>? existingIncome = pref.getStringList(_newIncomeKey);
 
       List<Income> existingIncomeObjects = [];
       if (existingIncome != null) {
@@ -84,7 +84,7 @@ class IncomeSerive {
           .map((e) => json.encode(e.toJson()))
           .toList();
 
-      await pref.setStringList(_incomeKey, updatedIncomeList);
+      await pref.setStringList(_newIncomeKey, updatedIncomeList);
 
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
