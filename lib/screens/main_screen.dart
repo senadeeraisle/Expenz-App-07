@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'package:expenz/constant/colors.dart';
 import 'package:expenz/models/expense_model.dart';
 import 'package:expenz/models/income_model.dart';
@@ -8,7 +10,6 @@ import 'package:expenz/screens/profile_screen.dart';
 import 'package:expenz/screens/transaction_screen.dart';
 import 'package:expenz/services/expense_service.dart';
 import 'package:expenz/services/income_service.dart';
-import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -38,7 +39,6 @@ class _MainScreenState extends State<MainScreen> {
 
     setState(() {
       expenseList = loadExpense;
-      print(expenseList.length);
     });
   }
 
@@ -81,9 +81,45 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
+  Map<ExpenseCategory, double> calculateExpenseCategoryTotal() {
+    Map<ExpenseCategory, double> expenseCategoryTotal = {
+      ExpenseCategory.food: 0,
+      ExpenseCategory.health: 0,
+      ExpenseCategory.shopping: 0,
+      ExpenseCategory.subscriptions: 0,
+      ExpenseCategory.transport: 0,
+    };
+
+    for (Expense expense in expenseList) {
+      expenseCategoryTotal[expense.category] =
+          expenseCategoryTotal[expense.category]! + expense.amount;
+    }
+    return expenseCategoryTotal;
+  }
+
+  Map<IncomeCategory, double> calculateIncomeCategory() {
+    Map<IncomeCategory, double> incomeCategoryTotal = {
+      IncomeCategory.freelance: 0,
+      IncomeCategory.passiveIncome: 0,
+      IncomeCategory.salary: 0,
+      IncomeCategory.sales: 0,
+    };
+
+    for (Income income in incomeList) {
+      incomeCategoryTotal[income.category] =
+          incomeCategoryTotal[income.category]! + income.amount;
+    }
+
+    return incomeCategoryTotal;
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
+      BudgetScreen(
+        incomeCategoryTotal: calculateIncomeCategory(),
+        expenseCategoryTotal: calculateExpenseCategoryTotal(),
+      ),
       HomeScreen(expenseList: expenseList, incomeList: incomeList),
       TransactionScreen(
         onDismissedIncome: deleteIncome,
@@ -92,7 +128,6 @@ class _MainScreenState extends State<MainScreen> {
         onDismissedExpenses: deleteExpense,
       ),
       AddNewScreen(addExpense: addNewExpense, addIncome: addNewIncome),
-      BudgetScreen(),
       ProfileScreen(),
     ];
     return Scaffold(
