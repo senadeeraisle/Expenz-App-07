@@ -116,10 +116,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
-      BudgetScreen(
-        incomeCategoryTotal: calculateIncomeCategory(),
-        expenseCategoryTotal: calculateExpenseCategoryTotal(),
-      ),
+      ProfileScreen(),
       HomeScreen(expenseList: expenseList, incomeList: incomeList),
       TransactionScreen(
         onDismissedIncome: deleteIncome,
@@ -128,7 +125,10 @@ class _MainScreenState extends State<MainScreen> {
         onDismissedExpenses: deleteExpense,
       ),
       AddNewScreen(addExpense: addNewExpense, addIncome: addNewIncome),
-      ProfileScreen(),
+      BudgetScreen(
+        incomeCategoryTotal: calculateIncomeCategory(),
+        expenseCategoryTotal: calculateExpenseCategoryTotal(),
+      ),
     ];
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
